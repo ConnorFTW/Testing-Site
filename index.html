@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML Website with C# Function</title>
+</head>
+<body>
+    <h1>Welcome to My Website</h1>
+    <p>This is a basic HTML website with a C# function.</p>
+    <button onclick="callCSharpFunction()">Call C# Function</button>
+
+    <script>
+        function callCSharpFunction() {
+            // Call the C# function using AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "CSharpFunction.aspx/GetMessage", true);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    alert(response.d);
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
