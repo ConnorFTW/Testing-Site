@@ -1,26 +1,20 @@
-﻿// MyController.cs
-using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-namespace TestingSite.Controllers
+namespace TestingSite
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class MyController : ControllerBase
+    public class Program
     {
-        [HttpGet("doSomething")]
-        public IActionResult DoSomething()
+        public static void Main(string[] args)
         {
-            try
-            {
-                // Your basic C# function logic here
-                Console.WriteLine("C# Function Executed!");
-                return Ok("C# Function Executed!");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"An error occurred: {ex.Message}");
-            }
+            CreateHostBuilder(args).Build().Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
