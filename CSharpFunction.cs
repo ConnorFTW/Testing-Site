@@ -1,15 +1,14 @@
-using System;
-using System.Web;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
 
-public class CSharpFunction : IHttpHandler {
-    public void ProcessRequest(HttpContext context) {
-        context.Response.ContentType = "text/plain";
-        context.Response.Write("Hello from C#!");
-    }
-
-    public bool IsReusable {
-        get {
-            return false;
+namespace BasicWebApp
+{
+    public class CSharpFunction
+    {
+        public static async Task Call(HttpContext context)
+        {
+            context.Response.ContentType = "text/plain";
+            await context.Response.WriteAsync("Hello from C#!");
         }
     }
 }
