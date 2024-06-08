@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/connorsavage/Downloads/Testing-Site/MyWebAPI/MyWebAPI.csproj": {}
+    "/Users/connorsavage/Downloads/Testing-Site/BasicWebApp.csproj": {}
   },
   "projects": {
-    "/Users/connorsavage/Downloads/Testing-Site/MyWebAPI/MyWebAPI.csproj": {
+    "/Users/connorsavage/Downloads/Testing-Site/BasicWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/connorsavage/Downloads/Testing-Site/MyWebAPI/MyWebAPI.csproj",
-        "projectName": "MyWebAPI",
-        "projectPath": "/Users/connorsavage/Downloads/Testing-Site/MyWebAPI/MyWebAPI.csproj",
+        "projectUniqueName": "/Users/connorsavage/Downloads/Testing-Site/BasicWebApp.csproj",
+        "projectName": "BasicWebApp",
+        "projectPath": "/Users/connorsavage/Downloads/Testing-Site/BasicWebApp.csproj",
         "packagesPath": "/Users/connorsavage/.nuget/packages/",
-        "outputPath": "/Users/connorsavage/Downloads/Testing-Site/MyWebAPI/obj/",
+        "outputPath": "/Users/connorsavage/Downloads/Testing-Site/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/connorsavage/.nuget/NuGet/NuGet.Config"
@@ -42,16 +42,6 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[8.0.6, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.4.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
