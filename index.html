@@ -15,8 +15,10 @@
         function callCSharpFunction() {
             fetch('/')
                 .then(response => response.text())
-                .then(data => document.getElementById('output').innerHTML = data);
+                .then(data => document.getElementById('output').innerHTML = data)
+                .catch(error => console.error('Error:', error));
         }
     </script>
+    
 </body>
 </html>
