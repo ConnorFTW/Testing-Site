@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace TestingSite.Controllers
+namespace CSharpApp.Controllers
 {
     public class HomeController : Controller
     {
@@ -9,10 +9,10 @@ namespace TestingSite.Controllers
             return View();
         }
 
-        [HttpGet("/api/doSomething")]
-        public IActionResult DoSomething()
+        [HttpPost]
+        public IActionResult RunFunction()
         {
-            return Ok("C# Function Executed!");
+            return Content("This is the message from C# File");
         }
     }
 }

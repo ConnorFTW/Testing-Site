@@ -1,26 +1,29 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Basic Web Page</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index</title>
 </head>
 <body>
-    <h1>Welcome to my basic webpage!</h1>
-    <p>This is a very basic webpage.</p>
-    
-    <!-- Button to trigger the C# function -->
-    <button id="triggerButton">Trigger C# Function</button>
-    
+    <div>
+        <button id="runFunctionButton">Run C# Function</button>
+    </div>
+    <div id="responseMessage"></div>
+
     <script>
-        // Function to send a request to the backend API endpoint
-        function triggerCSharpFunction() {
-            fetch('/api/doSomething')
+        document.getElementById('runFunctionButton').addEventListener('click', function () {
+            fetch('/Home/RunFunction', {
+                method: 'POST'
+            })
                 .then(response => response.text())
-                .then(data => console.log(data)) // Handle response if needed
-                .catch(error => console.error('Error:', error));
-        }
-        
-        // Add event listener to the button
-        document.getElementById("triggerButton").addEventListener("click", triggerCSharpFunction);
+                .then(data => {
+                    document.getElementById('responseMessage').innerText = data;
+                });
+        });
     </script>
 </body>
 </html>
