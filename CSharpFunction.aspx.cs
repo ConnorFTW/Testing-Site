@@ -1,11 +1,15 @@
-using System;
-using System.Web.Services;
+using Microsoft.AspNetCore.Mvc;
 
-public partial class CSharpFunction : System.Web.UI.Page
+namespace MyWebAPI.Controllers
 {
-    [WebMethod]
-    public static string GetMessage()
+    [Route("api/[controller]")]
+    [ApiController]
+    public class MessageController : ControllerBase
     {
-        return "Hello from C# function!";
+        [HttpPost("GetMessage")]
+        public ActionResult<string> GetMessage()
+        {
+            return "Hello from C# function!";
+        }
     }
 }

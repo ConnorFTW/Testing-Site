@@ -1,8 +1,6 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CSharpFunction.aspx.cs" Inherits="CSharpFunction" %>
-
 <!DOCTYPE html>
 <html lang="en">
-<head runat="server">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Basic HTML Website with C# Function</title>
@@ -14,14 +12,14 @@
 
     <script>
         function callCSharpFunction() {
-            fetch('CSharpFunction.aspx/GetMessage', {
+            fetch('/api/message/GetMessage', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => response.json())
-            .then(data => alert(data.d))
+            .then(response => response.text())
+            .then(data => alert(data))
             .catch(error => console.error('Error:', error));
         }
     </script>
