@@ -13,7 +13,7 @@
     <script>
         // Function to send a request to the backend API endpoint
         function triggerCSharpFunction() {
-            fetch('/api/doSomething')
+            fetch('https://main--testingsite323.netlify.app/api/doSomething')
                 .then(response => response.text())
                 .then(data => console.log(data)) // Handle response if needed
                 .catch(error => console.error('Error:', error));
