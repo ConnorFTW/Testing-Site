@@ -2,9 +2,33 @@
 <html>
 <head>
     <title>My Basic Web Page</title>
+    <style>
+        /* Hide the textbox initially */
+        #textbox {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to my basic webpage!</h1>
     <p>This is a very basic webpage.</p>
+    
+    <!-- Button to toggle the textbox -->
+    <button id="toggleButton">Show Textbox</button>
+    
+    <!-- Textbox -->
+    <input type="text" id="textbox" placeholder="Type something...">
+    
+    <script>
+        // Function to toggle the visibility of the textbox
+        function toggleTextbox() {
+            var textbox = document.getElementById("textbox");
+            // Toggle the display property based on the current state
+            textbox.style.display = textbox.style.display === "none" ? "block" : "none";
+        }
+        
+        // Add event listener to the button
+        document.getElementById("toggleButton").addEventListener("click", toggleTextbox);
+    </script>
 </body>
 </html>
