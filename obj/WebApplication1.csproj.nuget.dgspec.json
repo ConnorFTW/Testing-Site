@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "/Users/connorsavage/Downloads/Testing-Site/MyWebApp.csproj": {}
+    "/Users/connorsavage/Downloads/Testing-Site/WebApplication1.csproj": {}
   },
   "projects": {
-    "/Users/connorsavage/Downloads/Testing-Site/MyWebApp.csproj": {
+    "/Users/connorsavage/Downloads/Testing-Site/WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/connorsavage/Downloads/Testing-Site/MyWebApp.csproj",
-        "projectName": "MyWebApp",
-        "projectPath": "/Users/connorsavage/Downloads/Testing-Site/MyWebApp.csproj",
+        "projectUniqueName": "/Users/connorsavage/Downloads/Testing-Site/WebApplication1.csproj",
+        "projectName": "WebApplication1",
+        "projectPath": "/Users/connorsavage/Downloads/Testing-Site/WebApplication1.csproj",
         "packagesPath": "/Users/connorsavage/.nuget/packages/",
         "outputPath": "/Users/connorsavage/Downloads/Testing-Site/obj/",
         "projectStyle": "PackageReference",
@@ -54,6 +54,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
