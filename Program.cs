@@ -1,40 +1,26 @@
-﻿// MyWebApp/Program.cs
+﻿// MyController.cs
+using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace MyWebApp
+namespace YourNamespace.Controllers
 {
-    class Program
+    [ApiController]
+    [Route("api/[controller]")]
+    public class MyController : ControllerBase
     {
-        static void Main(string[] args)
+        [HttpGet("doSomething")]
+        public IActionResult DoSomething()
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .ConfigureServices(services => services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>())
-                .Configure(app =>
-                {
-                    app.Run(context =>
-                    {
-                        if (context.Request.Path == "/api/doSomething")
-                        {
-                            // Your basic C# function logic here
-                            Console.WriteLine("C# Function Executed!");
-                            return context.Response.WriteAsync("C# Function Executed!");
-                        }
-                        else
-                        {
-                            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
-                            return context.Response.WriteAsync("Page not found");
-                        }
-                    });
-                })
-                .Build();
-
-            host.Run();
+            try
+            {
+                // Your basic C# function logic here
+                Console.WriteLine("C# Function Executed!");
+                return Ok("C# Function Executed!");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred: {ex.Message}");
+            }
         }
     }
 }
