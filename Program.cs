@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace YourNamespace.Controllers
+namespace TestingSite.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
