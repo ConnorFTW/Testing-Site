@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Merge Vehicle Files</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+        body {
+            background: url('https://i.gyazo.com/3638217c5a6bd9bdc6288c89aca6ee77.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            color: #e0e0e0; /* Light text */
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay with opacity */
+        }
+
+        .page-wrapper {
+            position: relative;
+            background-color: rgba(30, 30, 30, 0.9); /* Slightly lighter dark background for the box */
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            text-align: center;
+            z-index: 1;
+            border: 2px solid #ff4c4c; /* Red outline */
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .title {
+            color: #ff4c4c; /* Slightly brighter red for the title */
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        input[type=file] {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #333333; /* Dark grey */
+            color: #ffffff; /* White text */
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type=file]:hover {
+            background-color: #444444; /* Slightly lighter on hover */
+        }
+
+        .file-list {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #444444; /* Lighter grey border */
+            background-color: #2b2b2b; /* Dark grey */
+            color: #ffffff; /* White text */
+            max-width: 100%;
+            overflow: auto;
+            text-align: left;
+            border-radius: 6px;
+            max-height: 200px;
+            transition: max-height 0.3s ease;
+        }
+
+        .file-list p {
+            margin: 5px 0;
+        }
+
+        .file-list.hide {
+            max-height: 0;
+            padding: 0 15px;
+            overflow: hidden;
+        }
+
+        .toggle-button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff4c4c; /* Red for button */
+            color: #ffffff; /* White text */
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            background-color: #ff6666; /* Lighter red on hover */
+        }
+
+        .logo {
+            width: 150px; /* Larger logo size */
+            margin-bottom: 20px;
+        }
+
+        .download-button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #ff4c4c; /* Red for download button */
+            color: #ffffff; /* White text */
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-button:hover {
+            background-color: #ff6666; /* Lighter red on hover */
+        }
+
+        .supporter-options {
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+        }
+
+        .supporter-options.show {
+            display: flex;
+            justify-content: center; /* Center items horizontally */
+            flex-wrap: wrap; /* Wrap items onto new line when necessary */
+            gap: 5px; /* Small gap between supporter packages */
+        }
+
+        .supporter-options h3 {
+            color: #ff4c4c; /* Red for title */
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .package {
+            background-color: #333333; /* Dark grey for package */
+            color: #ffffff; /* White text */
+            padding: 8px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 2px solid #ff4c4c; /* Red outline */
+            width: calc(50% - 5px); /* Adjusted width */
+            max-width: 180px;
+        }
+
+        @media (max-width: 768px) {
+            .package {
+                width: 100%; /* Full width on smaller screens */
+            }
+        }
+
+        .package h4 {
+            color: #ff4c4c; /* Red for package title */
+            font-size: 14px;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .package p {
+            margin-bottom: 5px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .package:last-child {
+            margin-bottom: 0;
+        }
+
+        .discord-button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #ff4c4c; /* Red for Discord button */
+            color: #ffffff; /* White text */
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .discord-button:hover {
+            background-color: #ff6666; /* Lighter red on hover */
+        }
+
+        .red-outline {
+            border: 2px solid #ff4c4c; /* Red outline */
+        }
+
+        .error-message {
+            color: #ff4c4c; /* Red text */
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top bar -->
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="https://i.gyazo.com/24452862b228c48099ec621a7deaface.png" alt="Advanced FiveM Hub Logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="car-merging.html">Car Merging</a></li>
+                    <li><a href="eup-merging.html">EUP Merging</a></li>
+                    <li><a href="mlo-merging.html">MLO Merging</a></li>
+                    <li><a href="script-merging.html">Script Merging</a></li>
+                    <li><a href="image-conversions.html">Image Conversions</a></li>
+                    <li>
+                        <a class="discord-button" href="https://discord.gg/zNx5AcYTMR" target="_blank">Discord</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <div class="overlay"></div>
+    <div class="page-wrapper">
+        <div class="container">
+            <h2 class="title">Upload and Merge Vehicle Files</h2>
+            <input type="file" id="folderInput" webkitdirectory directory multiple class="red-outline">
+            <div id="fileList" class="file-list red-outline"></div>
+            <button id="toggleButton" class="toggle-button red-outline" onclick="toggleFileList()">Toggle File List</button>
+            <p id="progressMessage" class="progress-message" style="display: none;">In Progress...</p>
+            <a href="#" id="downloadLink" class="download-button red-outline" style="display: none;">Download Main Folder as ZIP</a>
+            <button id="supporterButton" class="toggle-button red-outline" onclick="toggleSupporterOptions()">Show Supporter Options</button>
+            <div id="supporterOptions" class="supporter-options">
+                <h3>Supporter Packages</h3>
+                <div class="package red-outline">
+                    <h4>Basic Supporter</h4>
+                    <p>Access to basic features</p>
+                    <a href="#" class="download-button red-outline">Upgrade to Basic</a>
+                </div>
+                <div class="package red-outline">
+                    <h4>Premium Supporter</h4>
+                    <p>Access to premium features</p>
+                    <a href="#" class="download-button red-outline">Upgrade to Premium</a>
+                </div>
+            </div>
+            <p id="errorMessage" class="error-message" style="display: none;">Error message will appear here.</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

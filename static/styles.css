@@ -1,0 +1,256 @@
+/* Reset and basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #080b10; /* Dark background */
+    color: #88aea3; /* Text color */
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Header styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.top-bar {
+    background-color: transparent; /* Transparent background */
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem; /* Adjust top and bottom padding */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: Add shadow for a modern look */
+}
+
+.logo {
+    background-color: #19232d; /* Background color for logo */
+    padding: 0.5rem; /* Padding around logo */
+    margin-right: 1rem; /* Adjust margin */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.logo a {
+    display: inline-block;
+}
+
+.logo img {
+    max-height: 60px; /* Adjust logo height */
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+}
+
+.logo img:hover {
+    transform: scale(1.1); /* Enlarge on hover */
+}
+
+.top-bar nav {
+    margin-left: auto; /* Pushes navigation to the right */
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #88aea3;
+    padding: 0.5rem 1rem; /* Padding inside the button */
+    border: 2px solid #88aea3; /* Border style */
+    border-radius: 10px; /* Slightly curved edges */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+    position: relative; /* Position relative for pseudo-element */
+    overflow: hidden; /* Hide overflow for pseudo-element */
+    background-color: transparent; /* Transparent background */
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #19232d; /* Background color behind the button */
+    z-index: -1; /* Behind the button content */
+    transition: transform 0.3s ease; /* Smooth transition */
+    transform-origin: right; /* Animation origin */
+    transform: scaleX(0); /* Initial transform */
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1); /* Scale to reveal on hover */
+    transform-origin: left; /* Animation origin */
+}
+
+nav ul li a:hover {
+    color: #080b10; /* Text color on hover */
+    background-color: #88aea3; /* Background color on hover */
+}
+
+/* Discord button specific styles */
+nav ul li a.discord-button {
+    background-color: transparent; /* Remove background */
+    color: #88aea3; /* Discord text color */
+    border: 2px solid #88aea3; /* Border for Discord button */
+    border-radius: 10px; /* Slightly curved edges */
+    padding: 0.5rem 1rem; /* Padding inside the button */
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+nav ul li a.discord-button:hover {
+    background-color: rgba(136, 174, 163, 0.2); /* Discord button background on hover */
+    color: #ffffff; /* Text color on hover */
+    border-color: #ffffff; /* Border color on hover */
+}
+
+/* Hero section styles */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url('background.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    color: #ffffff;
+    padding: 0 2rem;
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    text-align: left; /* Align text to the left */
+    font-size: 4rem; /* Larger title text */
+    margin-bottom: 1rem;
+}
+
+.hero-text {
+    text-align: left; /* Ensure text flows from left to right */
+    flex: 1;
+}
+
+.hero-image {
+    text-align: right;
+}
+
+.hero-image img {
+    width: 800px; /* Adjust image width to make the GIF larger */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Other section styles (features, about, contact) */
+.features,
+.about,
+.contact {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.features .feature-item {
+    margin-bottom: 2rem;
+}
+
+.features .feature-item h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #19232d; /* Dark footer background */
+    color: #88aea3;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .top-bar {
+        padding: 0.5rem 2rem; /* Adjust top and bottom padding for smaller screens */
+    }
+
+    .hero-title {
+        font-size: 3rem; /* Adjust title size for smaller screens */
+        margin-left: 1rem; /* Adjust margin left for smaller screens */
+    }
+
+    .hero-content {
+        flex-direction: column; /* Stack content in smaller screens */
+        text-align: center;
+    }
+
+    .hero-image img {
+        width: 400px; /* Adjust image size for smaller screens */
+    }
+
+    .site-title {
+        text-align: left; /* Ensure title aligns to the left on smaller screens */
+        font-size: 2rem; /* Adjust title font size */
+        margin-left: 1rem; /* Adjust margin left for smaller screens */
+    }
+
+    .site-description {
+        text-align: left; /* Ensure description aligns to the left on smaller screens */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation vertically on smaller screens */
+        margin-top: 1rem; /* Add space between items */
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    nav ul li a {
+        padding: 0.5rem 2rem; /* Adjust padding for smaller screens */
+    }
+
+    .hero-text {
+        text-align: center; /* Center align text on smaller screens */
+    }
+
+    .hero-image {
+        text-align: center; /* Center align image on smaller screens */
+        margin-top: 1rem; /* Add spacing from text */
+    }
+
+    .hero-image img {
+        width: 250px; /* Adjust image size for smaller screens */
+    }
+}
